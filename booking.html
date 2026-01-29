@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Booking | EVENTZO</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .payment-page {
+            padding: 150px 0 100px;
+            min-height: 100vh;
+            background: radial-gradient(circle at top right, #1a1625, #100e17);
+        }
+
+        .payment-container {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .payment-form-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 3rem;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .order-summary {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            border-radius: 30px;
+            position: sticky;
+            top: 120px;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .method {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .method.active {
+            border-color: var(--primary-color);
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .method i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .card-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .total-row {
+            border-top: 1px solid var(--glass-border);
+            padding-top: 1rem;
+            margin-top: 1rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 992px) {
+            .payment-container {
+                grid-template-columns: 1fr;
+            }
+
+            .order-summary {
+                position: static;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="scrolled">
+        <nav class="container">
+            <div class="logo">
+                <a href="index.html">EVENT<span>ZO</span></a>
+            </div>
+            <div class="header-btns">
+                <a href="index.html" class="btn btn-outline">Back to Home</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="payment-page">
+        <div class="container payment-container">
+            <div class="payment-form-box">
+                <h2 style="margin-bottom: 2rem; font-size: 2.5rem;">Event Booking</h2>
+
+
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">Full
+                            Name</label>
+                        <input type="text" id="bookingName" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">Email
+                            Address</label>
+                        <input type="email" id="bookingEmail" placeholder="example@mail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">Preferred
+                            Event</label>
+                        <select id="bookingEvent" required>
+                            <option value="" disabled selected>Select an event type</option>
+                            <option value="wedding">Wedding Gala</option>
+                            <option value="corporate">Corporate Summit</option>
+                            <option value="social">Social Party</option>
+                            <option value="concert">Music Festival</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">Preferred
+                            Date</label>
+                        <input type="date" id="bookingDate" required>
+                    </div>
+                    <div class="form-group" style="margin-top: 1.5rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">Special
+                            Requirements (Optional)</label>
+                        <textarea rows="4" placeholder="Tell us more about your needs..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block" style="margin-top: 2rem;">Confirm
+                        Booking</button>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">
+                        <i class="fas fa-check-circle"></i> No payment required at this stage.
+                    </p>
+                </form>
+            </div>
+
+            <div class="order-summary">
+                <h3 style="margin-bottom: 1.5rem;">Booking Summary</h3>
+                <div class="summary-item">
+                    <span>Event Service Package</span>
+                    <span>$2,500.00</span>
+                </div>
+                <div class="summary-item">
+                    <span>Venue Coordination</span>
+                    <span>$500.00</span>
+                </div>
+                <div class="summary-item">
+                    <span>Tax (10%)</span>
+                    <span>$300.00</span>
+                </div>
+                <div class="total-row summary-item">
+                    <span>Total Amount</span>
+                    <span>$3,300.00</span>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                        <i class="fas fa-info-circle"></i> Cancellation policy applies. 50% refund for cancellations
+                        made 30 days prior.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const name = document.getElementById('bookingName').value;
+
+            btn.innerText = 'Processing...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                alert(`Thank you ${name}! Your booking request for the event has been received. We will contact you soon.`);
+                window.location.href = 'index.html';
+            }, 2500);
+        });
+    </script>
+</body>
+
+</html>
